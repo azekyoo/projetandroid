@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/background_color">
+
 
     <ImageView
         android:id="@+id/logoImageView"
@@ -16,7 +18,8 @@
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search for a country or capital"
+        android:hint="@string/search_for_a_country_or_capital"
+        android:textSize="24sp"
         android:padding="10dp"
         android:background="@drawable/edit_text_background"
         android:layout_marginBottom="16dp"/>
@@ -26,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="Chercher"
+        android:text="@string/search"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
 
