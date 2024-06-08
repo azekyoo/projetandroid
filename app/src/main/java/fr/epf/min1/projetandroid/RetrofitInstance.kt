@@ -1,4 +1,5 @@
-import fr.epf.min1.projetandroid.ApiService
+package fr.epf.min1.projetandroid
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

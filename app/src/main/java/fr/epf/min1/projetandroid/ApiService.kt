@@ -8,5 +8,5 @@ interface ApiService {
     suspend fun getAllCountries(): List<Country>
 
     @GET("v3.1/name/{name}")
-    suspend fun searchCountries(@Query("name") name: String): List<Country>
+    suspend fun searchCountryByName(@Query("name") name: String): List<Country>
 }

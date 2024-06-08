@@ -1,21 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/searchEditText"
+    <Button
+        android:id="@+id/home_detailspays_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search by country or capital"
-        android:padding="16dp" />
-
-    <RecyclerView
-        android:id="@+id/countryRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="16dp" />
+        android:text="View Country Details" />
 </LinearLayout>
