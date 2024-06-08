@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.epf.min1.projetandroid.Country
+import fr.epf.min1.projetandroid.R
 
 class CountryAdapter(
     private val countries: List<Country>,

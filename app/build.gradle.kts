@@ -45,9 +45,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
+    implementation(libs.retrofit.converter.gson)
     implementation(libs.retrofit)
     implementation(libs.glide)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
 
 }
