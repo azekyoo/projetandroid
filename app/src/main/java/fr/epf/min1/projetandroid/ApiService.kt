@@ -4,9 +4,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("v3.1/all")
+    @GET("countries")
     suspend fun getAllCountries(): List<Country>
 
-    @GET("v3.1/name/{name}")
+    @GET("countries")
     suspend fun searchCountryByName(@Query("name") name: String): List<Country>
 }

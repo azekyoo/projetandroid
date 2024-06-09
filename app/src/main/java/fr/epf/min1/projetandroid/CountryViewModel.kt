@@ -32,11 +32,12 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
     fun searchCountry(name: String) {
         viewModelScope.launch {
             try {
+                Log.d("CountryViewModel", "Searching for country with name: $name")
                 val countryList = repository.searchCountryByName(name)
+                Log.d("CountryViewModel", "Countries fetched: $countryList")
                 _searchResults.postValue(countryList)
-                Log.d("CountryViewModel", "Country fetched: $countryList")
             } catch (e: Exception) {
-                Log.e("CountryViewModel", "Failed to fetch countries", e)
+                Log.e("CountryViewModel", "Failed to fetch country", e)
             }
         }
     }

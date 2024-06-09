@@ -6,11 +6,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.epf.min1.projetandroid.databinding.ActivityListPaysBinding
+import android.util.Log
 
 class ListPaysActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListPaysBinding
     private val countryViewModel: CountryViewModel by viewModels()
+    private lateinit var countryAdapter: CountryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,23 +21,32 @@ class ListPaysActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
+        // Observe the LiveData from the ViewModel
         countryViewModel.countries.observe(this) { countries ->
-            binding.countriesRecyclerView.adapter = CountryAdapter(countries) { country ->
-                val intent = Intent(this, CountryDetailActivity::class.java)
-                intent.putExtra("country_name", country.name)
-                intent.putExtra("country_capital", country.capital)
-                intent.putExtra("country_flag", country.flag)
-                startActivity(intent)
-            }
+            Log.d("ListPaysActivity", "Countries received: ${countries.size}")
+            countryAdapter.updateCountries(countries)
         }
 
+        // Get the search term from the intent and search for countries
         val searchTerm = intent.getStringExtra("search_term")
+        Log.d("ListPaysActivity", "Search term: $searchTerm")
         if (!searchTerm.isNullOrEmpty()) {
             countryViewModel.searchCountry(searchTerm)
         }
     }
 
     private fun setupRecyclerView() {
-        binding.countriesRecyclerView.layoutManager = LinearLayoutManager(this)
+        countryAdapter = CountryAdapter(emptyList()) { country ->
+            val intent = Intent(this, CountryDetailActivity::class.java).apply {
+                putExtra("country_name", country.name)
+                putExtra("country_capital", country.capital)
+                putExtra("country_flag", country.flag)
+            }
+            startActivity(intent)
+        }
+        binding.countriesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@ListPaysActivity)
+            adapter = countryAdapter
+        }
     }
 }

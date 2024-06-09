@@ -21,7 +21,7 @@ class CountryRepository(private val coroutineScope: CoroutineScope) {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://restcountries.com/")
+            .baseUrl("https://www.apicountries.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
