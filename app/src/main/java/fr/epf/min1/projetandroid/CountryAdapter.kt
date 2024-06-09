@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import android.util.Log
 
 class CountryAdapter(private var countries: List<Country>, private val onItemClick: (Country) -> Unit) :
     RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
@@ -36,7 +37,11 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
         fun bind(country: Country, onItemClick: (Country) -> Unit) {
             countryNameTextView.text = country.name
             capitalNameTextView.text = country.capital
-            Glide.with(itemView.context).load(country.flag).into(countryFlagImageView)
+            Log.d("CountryAdapter", "Loading flag URL: ${country.flag}")
+            Glide.with(itemView.context)
+                .load(country.flag)
+                .error(R.drawable.flag_placeholder)
+                .into(countryFlagImageView)
             itemView.setOnClickListener {
                 onItemClick(country)
             }
