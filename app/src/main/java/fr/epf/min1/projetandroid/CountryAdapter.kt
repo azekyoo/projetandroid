@@ -8,8 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import android.util.Log
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CountryAdapter(private var countries: List<Country>, private val onItemClick: (Country) -> Unit) : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 
@@ -29,6 +31,7 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
         countries = newCountries
         notifyDataSetChanged()
     }
+
     inner class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val flagImageView: ImageView = itemView.findViewById(R.id.flagImageView)
         private val countryNameTextView: TextView = itemView.findViewById(R.id.countryNameTextView)
@@ -44,14 +47,20 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
                 .load(country.flag)
                 .error(R.drawable.flag_placeholder)
                 .into(flagImageView)
+
             itemView.setOnClickListener {
                 onItemClick(country)
             }
-            // Set the initial state of the favorite button
-            updateFavoriteIcon()
+
+            // Check if the country is already a favorite
+            CoroutineScope(Dispatchers.Main).launch {
+                val db = CountryDatabase.getDatabase(itemView.context)
+                isFavorite = db.countryDao().isFavorite(country.name)
+                updateFavoriteIcon()
+            }
 
             favoriteButton.setOnClickListener {
-                GlobalScope.launch {
+                CoroutineScope(Dispatchers.IO).launch {
                     val db = CountryDatabase.getDatabase(itemView.context)
                     if (isFavorite) {
                         db.countryDao().delete(country.name)
@@ -59,7 +68,9 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
                         db.countryDao().insert(country)
                     }
                     isFavorite = !isFavorite
-                    updateFavoriteIcon()
+                    withContext(Dispatchers.Main) {
+                        updateFavoriteIcon()
+                    }
                 }
             }
         }
