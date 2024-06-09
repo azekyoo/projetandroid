@@ -25,6 +25,10 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
 
     override fun getItemCount(): Int = countries.size
 
+    fun updateCountries(newCountries: List<Country>) {
+        countries = newCountries
+        notifyDataSetChanged()
+    }
     inner class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val flagImageView: ImageView = itemView.findViewById(R.id.flagImageView)
         private val countryNameTextView: TextView = itemView.findViewById(R.id.countryNameTextView)
