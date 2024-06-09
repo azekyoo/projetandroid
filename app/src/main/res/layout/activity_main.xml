@@ -40,6 +40,26 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         />
+
+    <Button
+        android:id="@+id/favoritesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/view_favorites"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        />
+
+
+
 </LinearLayout>
 
 

@@ -4,4 +4,6 @@
     <string name="search">Search</string>
     <string name="countries_list">Countries List</string>
     <string name="flag_description">flag description</string>
+    <string name="favorite_countries">Favorite Countries</string>
+    <string name="view_favorites">View Favorites</string>
 </resources>

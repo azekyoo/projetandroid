@@ -41,6 +41,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val favoritesButton = findViewById<Button>(R.id.favoritesButton)
+        favoritesButton.setOnClickListener {
+            val intent = Intent(this, FavoriteCountriesActivity::class.java)
+            startActivity(intent)
+        }
+
         setupAutoSuggestions()
     }
 
