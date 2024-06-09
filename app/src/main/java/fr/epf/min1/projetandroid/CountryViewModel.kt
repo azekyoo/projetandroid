@@ -34,8 +34,9 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
             try {
                 val countryList = repository.searchCountryByName(name)
                 _searchResults.postValue(countryList)
+                Log.d("CountryViewModel", "Country fetched: $countryList")
             } catch (e: Exception) {
-                // Handle error
+                Log.e("CountryViewModel", "Failed to fetch countries", e)
             }
         }
     }

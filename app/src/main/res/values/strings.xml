@@ -3,4 +3,5 @@
     <string name="search_for_a_country_or_capital">Search for a country or capital</string>
     <string name="search">Search</string>
     <string name="countries_list">Countries List</string>
+    <string name="flag_description">flag description</string>
 </resources>

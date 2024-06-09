@@ -29,11 +29,13 @@ class ListPaysActivity : AppCompatActivity() {
             }
         }
 
-        countryViewModel.fetchAllCountries()
+        val searchTerm = intent.getStringExtra("search_term")
+        if (!searchTerm.isNullOrEmpty()) {
+            countryViewModel.searchCountry(searchTerm)
+        }
     }
 
     private fun setupRecyclerView() {
         binding.countriesRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 }
-
