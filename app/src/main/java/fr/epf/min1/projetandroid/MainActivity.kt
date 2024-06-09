@@ -10,12 +10,18 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: Button
     private lateinit var countryViewModel: CountryViewModel
+    private var searchJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         searchButton.setOnClickListener {
             val searchTerm = searchEditText.text.toString()
+            Log.d("MainActivity", "Search term entered: $searchTerm")
             if (searchTerm.isNotEmpty()) {
                 val intent = Intent(this, ListPaysActivity::class.java)
                 intent.putExtra("search_term", searchTerm)
@@ -42,16 +49,22 @@ class MainActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val searchTerm = s.toString()
-                if (searchTerm.isNotEmpty()) {
-                    countryViewModel.searchCountry(searchTerm)
+                Log.d("MainActivity", "Auto-suggest search term: $searchTerm")
+
+                searchJob?.cancel()
+                searchJob = CoroutineScope(Dispatchers.Main).launch {
+                    delay(300)
+                    if (searchTerm.isNotEmpty()) {
+                        countryViewModel.searchCountry(searchTerm)
+                    }
                 }
             }
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        countryViewModel.countries.observe(this, Observer { countries ->
-            // Use the list of countries for auto-suggestions
-            // You can use a library like MaterialAutoCompleteTextView or custom implementation
+        countryViewModel.searchResults.observe(this, Observer { countries ->
+            Log.d("MainActivity", "Auto-suggestions received: ${countries.size}")
+
         })
     }
 }

@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.glide)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
     implementation("androidx.activity:activity-ktx:1.4.1")

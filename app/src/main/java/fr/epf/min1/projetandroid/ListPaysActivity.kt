@@ -21,13 +21,11 @@ class ListPaysActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
-        // Observe the LiveData from the ViewModel
-        countryViewModel.countries.observe(this) { countries ->
+        countryViewModel.searchResults.observe(this) { countries ->
             Log.d("ListPaysActivity", "Countries received: ${countries.size}")
             countryAdapter.updateCountries(countries)
         }
 
-        // Get the search term from the intent and search for countries
         val searchTerm = intent.getStringExtra("search_term")
         Log.d("ListPaysActivity", "Search term: $searchTerm")
         if (!searchTerm.isNullOrEmpty()) {
