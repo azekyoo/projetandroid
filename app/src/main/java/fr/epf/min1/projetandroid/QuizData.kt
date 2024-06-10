@@ -19,10 +19,10 @@ object QuizData {
             correctAnswer = 2
         ),
         QuizQuestion(
-            question = "What is the largest country by area?",
-            options = listOf("Canada", "Russia", "USA", "China"),
-            correctAnswer = 1
+            question = "Who is the best Matériels mobiles teacher?",
+            options = listOf("No one", "Not a single person", "Cyril Dumont", "Nobody"),
+            correctAnswer = 2
         )
-        // Add more questions here
+
     )
 }
