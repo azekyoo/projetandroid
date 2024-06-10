@@ -10,6 +10,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import fr.epf.min1.projetandroid.QuizActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -44,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         val favoritesButton = findViewById<Button>(R.id.favoritesButton)
         favoritesButton.setOnClickListener {
             val intent = Intent(this, FavoriteCountriesActivity::class.java)
+            startActivity(intent)
+        }
+
+        val startQuizButton: Button = findViewById(R.id.startQuizButton)
+        startQuizButton.setOnClickListener {
+            val intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
         }
 
