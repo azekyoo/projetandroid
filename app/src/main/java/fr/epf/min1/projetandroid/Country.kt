@@ -7,5 +7,9 @@ import androidx.room.PrimaryKey
 data class Country(
     @PrimaryKey val name: String,
     val capital: String,
-    val flag: String
+    val flags: Flags,
+)
+data class Flags(
+    val svg: String,
+    val png: String
 )

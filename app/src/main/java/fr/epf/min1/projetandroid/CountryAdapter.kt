@@ -42,9 +42,9 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
         fun bind(country: Country) {
             countryNameTextView.text = country.name
             capitalNameTextView.text = country.capital
-            Log.d("CountryAdapter", "Loading flag URL: ${country.flag}")
+            Log.d("CountryAdapter", "Loading flag URL: ${country.flags.png}")
             Glide.with(itemView.context)
-                .load(country.flag)
+                .load(country.flags.png)
                 .error(R.drawable.flag_placeholder)
                 .into(flagImageView)
 
@@ -77,9 +77,9 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
 
         private fun updateFavoriteIcon() {
             if (isFavorite) {
-                favoriteButton.setImageResource(R.drawable.ic_favorite) // Favorite icon
+                favoriteButton.setImageResource(R.drawable.button_favorite_full) // Favorite icon
             } else {
-                favoriteButton.setImageResource(R.drawable.ic_favorite_border) // Not favorite icon
+                favoriteButton.setImageResource(R.drawable.button_favorite_border) // Not favorite icon
             }
         }
     }

@@ -38,7 +38,7 @@ class ListPaysActivity : AppCompatActivity() {
             val intent = Intent(this, CountryDetailActivity::class.java).apply {
                 putExtra("country_name", country.name)
                 putExtra("country_capital", country.capital)
-                putExtra("country_flag", country.flag)
+                putExtra("country_flag", country.flags.png)
             }
             startActivity(intent)
         }

@@ -29,7 +29,7 @@ class FavoriteCountriesActivity : AppCompatActivity() {
             val intent = Intent(this, CountryDetailActivity::class.java).apply {
                 putExtra("COUNTRY_NAME", country.name)
                 putExtra("COUNTRY_CAPITAL", country.capital)
-                putExtra("COUNTRY_FLAG", country.flag)
+                putExtra("COUNTRY_FLAG", country.flags.png)
                 // Add any other country details you need to pass
             }
             startActivity(intent)
@@ -47,4 +47,5 @@ class FavoriteCountriesActivity : AppCompatActivity() {
             }
         }
     }
+
 }

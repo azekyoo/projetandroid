@@ -12,22 +12,22 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
     private val repository = CountryRepository(viewModelScope)
 
     private val _countries = MutableLiveData<List<Country>>()
-    val countries: LiveData<List<Country>> get() = _countries
+//    val countries: LiveData<List<Country>> get() = _countries
 
     private val _searchResults = MutableLiveData<List<Country>>()
     val searchResults: LiveData<List<Country>> get() = _searchResults
 
-    fun fetchAllCountries() {
-        viewModelScope.launch {
-            try {
-                val countryList = repository.getAllCountries()
-                _countries.postValue(countryList)
-                Log.d("CountryViewModel", "Countries fetched: $countryList")
-            } catch (e: Exception) {
-                Log.e("CountryViewModel", "Failed to fetch countries", e)
-            }
-        }
-    }
+//    fun fetchAllCountries() {
+//        viewModelScope.launch {
+//            try {
+//                val countryList = repository.getAllCountries()
+//                _countries.postValue(countryList)
+//                Log.d("CountryViewModel", "Countries fetched: $countryList")
+//            } catch (e: Exception) {
+//                Log.e("CountryViewModel", "Failed to fetch countries", e)
+//            }
+//        }
+//    }
 
     fun searchCountry(name: String) {
         viewModelScope.launch {
@@ -40,5 +40,10 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
                 Log.e("CountryViewModel", "Failed to fetch country", e)
             }
         }
+    }
+
+    fun resetDatabase() {
+        val context = getApplication<Application>().applicationContext
+        context.deleteDatabase("country_database")
     }
 }
