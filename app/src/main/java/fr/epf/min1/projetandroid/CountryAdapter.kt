@@ -1,5 +1,6 @@
 package fr.epf.min1.projetandroid
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,18 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
                 .into(flagImageView)
 
             itemView.setOnClickListener {
-                onItemClick(country)
+                val intent = Intent(itemView.context, CountryDetailActivity::class.java).apply {
+                    putExtra("country_name", country.name)
+                    putExtra("country_capital", country.capital)
+                    putExtra("country_flag", country.flags.png)
+                    putExtra("country_population", country.population)
+                    putExtra("country_area", country.area)
+                    putExtra("country_region", country.region)
+                    putExtra("country_subregion", country.subregion)
+                    putExtra("country_currency", country.currencies.joinToString { "${it.name} (${it.symbol})" })
+                    putStringArrayListExtra("country_languages", ArrayList(country.languages.map { it.name }))
+                }
+                itemView.context.startActivity(intent)
             }
 
             // Check if the country is already a favorite
