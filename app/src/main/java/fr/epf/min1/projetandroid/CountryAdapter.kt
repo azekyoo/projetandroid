@@ -60,6 +60,8 @@ class CountryAdapter(private var countries: List<Country>, private val onItemCli
                     putExtra("country_subregion", country.subregion)
                     putExtra("country_currency", country.currencies.joinToString { "${it.name} (${it.symbol})" })
                     putStringArrayListExtra("country_languages", ArrayList(country.languages.map { it.name }))
+                    putExtra("country_lat", country.latlng[0])
+                    putExtra("country_lng", country.latlng[1])
                 }
                 itemView.context.startActivity(intent)
             }

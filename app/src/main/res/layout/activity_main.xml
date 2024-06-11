@@ -18,7 +18,7 @@
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search_for_a_country_or_capital"
+        android:hint="@string/search_for_a_country"
         android:textSize="24sp"
         android:padding="10dp"
         android:background="@drawable/edit_text_background"

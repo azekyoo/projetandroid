@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
 @Entity(tableName = "favorite_countries")
-@TypeConverters(Converters::class)
 data class Country(
     @PrimaryKey val name: String,
     val capital: String,
@@ -15,7 +14,8 @@ data class Country(
     val currencies: List<Currency>,
     val region: String,
     val subregion: String,
-    val languages: List<Language>
+    val languages: List<Language>,
+    val latlng: List<Double>
 )
 data class Flags(
     val svg: String,

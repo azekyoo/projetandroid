@@ -120,5 +120,12 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/black" />
         </LinearLayout>
+
+    <!-- MapView -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp" />
     </LinearLayout>
 </ScrollView>
