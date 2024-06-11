@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         searchEditText = findViewById(R.id.searchEditText)
         searchButton = findViewById(R.id.searchButton)
         countryViewModel = ViewModelProvider(this).get(CountryViewModel::class.java)
-        countryViewModel.resetDatabase()
+        //countryViewModel.resetDatabase()
 
         searchButton.setOnClickListener {
             val searchTerm = searchEditText.text.toString()
