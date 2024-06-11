@@ -18,6 +18,6 @@ MIN 1
 - **Quiz sur les pays**
 
 ⚠️ Il est conseillé d'avoir son téléphone en mode clair plutôt que sombre car nous n'avons pas eu le temps d'optimiser les couleurs pour le monde sombre.
-L'API utilisé est la suivante : https://apicountries.com/docs
+L'API utilisée est la suivante : https://apicountries.com/docs
 
 
